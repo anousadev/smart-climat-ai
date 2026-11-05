@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Climate AI</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #eef7f2;
+    color: #244638;
+    text-align: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 4px 15px #cbded3;
+}
+
+h1 {
+    color: #26845c;
+}
+
+select, input, button {
+    padding: 12px;
+    margin: 10px;
+    border-radius: 8px;
+    border: 1px solid #aaa;
+    font-size: 16px;
+}
+
+button {
+    background: #26845c;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+#result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #e4f5eb;
+    border-radius: 12px;
+    display: none;
+}
+
+small {
+    color: #777;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌱 Smart Climate AI</h1>
+
+<p>Une solution intelligente pour mieux conserver les fruits et légumes.</p>
+
+<h3>Choisis ton produit</h3>
+
+<select id="product">
+<option value="fraises">Fraises</option>
+<option value="tomates">Tomates</option>
+<option value="bananes">Bananes</option>
+<option value="carottes">Carottes</option>
+<option value="pommes">Pommes</option>
+<option value="concombres">Concombres</option>
+</select>
+
+<h3>Température extérieure :</h3>
+
+<input id="temperature" type="number" value="30"> °C
+
+<br>
+
+<button onclick="analyser()">
+Analyser mon produit
+</button>
+
+<div id="result"></div>
+
+<p>
+<small>
+Prototype pédagogique : les recommandations sont indicatives et ne remplacent pas un système réel de conservation.
+</small>
+</p>
+
+</div>
+
+<script>
+
+const conseils = {
+    fraises: "Les fraises sont fragiles. Conserve-les au réfrigérateur.",
+    tomates: "Évite le froid excessif. Garde les tomates dans un endroit adapté.",
+    bananes: "Les bananes mûrissent plus vite avec la chaleur. Éloigne-les du soleil.",
+    carottes: "Les carottes se conservent généralement au frais et avec une bonne humidité.",
+    pommes: "Les pommes se conservent mieux dans un endroit frais.",
+    concombres: "Les concombres préfèrent un endroit frais, sans température trop basse."
+};
+
+function analyser() {
+
+    const produit = document.getElementById("product").value;
+
+    const temperature = Number(
+        document.getElementById("temperature").value
+    );
+
+    const resultat = document.getElementById("result");
+
+    resultat.style.display = "block";
+
+    resultat.innerHTML =
+        "<h3>Résultat de l'analyse</h3>" +
+        "<p>" + conseils[produit] + "</p>" +
+        "<p>Température extérieure : " + temperature + " °C</p>" +
+
+        (temperature > 30
+        ? "<strong>⚠️ Attention : il fait chaud ! Protège tes produits de la chaleur.</strong>"
+        : "<strong>✅ La température extérieure est moins élevée, mais surveille toujours tes produits.</strong>") +
+
+        "<p><small>Analyse simulée, sans capteur réel ni intelligence artificielle connectée.</small></p>";
+}
+
+</script>
+
+</body>
+</html>
