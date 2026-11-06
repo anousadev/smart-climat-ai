@@ -1,137 +1,426 @@
-
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart Climate AI</title>
+    <meta charset="UTF-8">
 
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background: #eef7f2;
-    color: #244638;
-    text-align: center;
-    padding: 20px;
-}
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-.container {
-    max-width: 600px;
-    margin: auto;
-    background: white;
-    padding: 25px;
-    border-radius: 18px;
-    box-shadow: 0 4px 15px #cbded3;
-}
+    <title>Smart Climate AI</title>
 
-h1 {
-    color: #26845c;
-}
+    <style>
 
-select, input, button {
-    padding: 12px;
-    margin: 10px;
-    border-radius: 8px;
-    border: 1px solid #aaa;
-    font-size: 16px;
-}
+        * {
+            box-sizing: border-box;
+        }
 
-button {
-    background: #26845c;
-    color: white;
-    cursor: pointer;
-    border: none;
-}
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f8ff;
+            color: #263c50;
+        }
 
-#result {
-    margin-top: 20px;
-    padding: 15px;
-    background: #e4f5eb;
-    border-radius: 12px;
-    display: none;
-}
+        header {
+            background: #b9ddf8;
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-small {
-    color: #777;
-}
-</style>
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+            color: #285d85;
+        }
+
+        .tag {
+            background: white;
+            color: #397ba9;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        main {
+            max-width: 950px;
+            margin: 45px auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            color: #367eaf;
+        }
+
+        .hero p {
+            color: #617b91;
+            line-height: 1.7;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 5px 22px #b7d5eb55;
+            margin-bottom: 22px;
+        }
+
+        h2 {
+            color: #367eaf;
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin: 18px 0 9px;
+            font-weight: bold;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #c4dff2;
+            border-radius: 10px;
+            background: #f8fcff;
+            font-size: 16px;
+            color: #263c50;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 23px;
+            padding: 15px;
+            border: none;
+            border-radius: 11px;
+            background: #80bde8;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #559dce;
+        }
+
+        #result {
+            display: none;
+            background: #edf7ff;
+            padding: 22px;
+            border-radius: 13px;
+            margin-top: 25px;
+            line-height: 1.7;
+        }
+
+        .status {
+            font-weight: bold;
+            color: #367eaf;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #7892a7;
+            font-size: 13px;
+        }
+
+        @media(max-width:600px) {
+
+            header {
+                padding: 20px;
+            }
+
+            .hero h1 {
+                font-size: 29px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+
 </head>
 
 <body>
 
-<div class="container">
+    <header>
 
-<h1>🌱 Smart Climate AI</h1>
+        <div class="logo">
+            ❄️ Smart Climate AI
+        </div>
 
-<p>Une solution intelligente pour mieux conserver les fruits et légumes.</p>
+        <div class="tag">
+            Smart technology
+        </div>
 
-<h3>Choisis ton produit</h3>
+    </header>
 
-<select id="product">
-<option value="fraises">Fraises</option>
-<option value="tomates">Tomates</option>
-<option value="bananes">Bananes</option>
-<option value="carottes">Carottes</option>
-<option value="pommes">Pommes</option>
-<option value="concombres">Concombres</option>
-</select>
+    <main>
 
-<h3>Température extérieure :</h3>
+        <section class="hero">
 
-<input id="temperature" type="number" value="30"> °C
+            <h1>Welcome to Smart Climate AI</h1>
 
-<br>
+            <p>
+                Un système intelligent qui aide
+                à conserver les fruits
+                et les légumes grâce à
+                l'intelligence artificielle.
 
-<button onclick="analyser()">
-Analyser mon produit
-</button>
+                <br>
 
-<div id="result"></div>
+                Préservons la fraîcheur,
+                réduisons les pertes !
+            </p>
 
-<p>
-<small>
-Prototype pédagogique : les recommandations sont indicatives et ne remplacent pas un système réel de conservation.
-</small>
-</p>
+        </section>
 
-</div>
+        <section class="card">
 
-<script>
+            <h2>🍎 Analyse intelligente</h2>
 
-const conseils = {
-    fraises: "Les fraises sont fragiles. Conserve-les au réfrigérateur.",
-    tomates: "Évite le froid excessif. Garde les tomates dans un endroit adapté.",
-    bananes: "Les bananes mûrissent plus vite avec la chaleur. Éloigne-les du soleil.",
-    carottes: "Les carottes se conservent généralement au frais et avec une bonne humidité.",
-    pommes: "Les pommes se conservent mieux dans un endroit frais.",
-    concombres: "Les concombres préfèrent un endroit frais, sans température trop basse."
-};
+            <label for="product">
+                Choisir un produit :
+            </label>
 
-function analyser() {
+            <select id="product">
 
-    const produit = document.getElementById("product").value;
+                <option value="apple">
+                    🍎 Pomme
+                </option>
 
-    const temperature = Number(
-        document.getElementById("temperature").value
-    );
+                <option value="banana">
+                    🍌 Banane
+                </option>
 
-    const resultat = document.getElementById("result");
+                <option value="strawberry">
+                    🍓 Fraise
+                </option>
 
-    resultat.style.display = "block";
+                <option value="tomato">
+                    🍅 Tomate
+                </option>
 
-    resultat.innerHTML =
-        "<h3>Résultat de l'analyse</h3>" +
-        "<p>" + conseils[produit] + "</p>" +
-        "<p>Température extérieure : " + temperature + " °C</p>" +
+                <option value="carrot">
+                    🥕 Carotte
+                </option>
 
-        (temperature > 30
-        ? "<strong>⚠️ Attention : il fait chaud ! Protège tes produits de la chaleur.</strong>"
-        : "<strong>✅ La température extérieure est moins élevée, mais surveille toujours tes produits.</strong>") +
+                <option value="lettuce">
+                    🥬 Laitue
+                </option>
 
-        "<p><small>Analyse simulée, sans capteur réel ni intelligence artificielle connectée.</small></p>";
-}
+                <option value="potato">
+                    🥔 Pomme de terre
+                </option>
 
-</script>
+            </select>
+
+            <label for="temperature">
+                Température actuelle (°C) :
+            </label>
+
+            <input
+                id="temperature"
+                type="number"
+                value="4"
+                step="0.1"
+            >
+
+            <button onclick="analyze()">
+                Analyser la température
+            </button>
+
+            <div id="result" aria-live="polite"></div>
+
+        </section>
+
+        <section class="card">
+
+            <h2>🌍 Notre objectif</h2>
+
+            <p>
+                Notre objectif est d'utiliser
+                l'intelligence artificielle
+                pour améliorer la conservation
+                des fruits et des légumes.
+            </p>
+
+            <p>
+                Grâce à l'analyse de la température,
+                nous pouvons aider à préserver
+                la fraîcheur des produits
+                et à réduire le gaspillage alimentaire.
+            </p>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        Smart Climate AI © 2026 –
+        Innovation for a better future 💙
+
+    </footer>
+
+    <script>
+
+        const products = {
+
+            apple: {
+                name: "Pomme",
+                min: 0,
+                max: 4,
+                advice: "Conserver au réfrigérateur, dans le bac à légumes."
+            },
+
+            banana: {
+                name: "Banane",
+                min: 12,
+                max: 15,
+                advice: "Conserver dans un endroit frais et sec, à température ambiante."
+            },
+
+            strawberry: {
+                name: "Fraise",
+                min: 0,
+                max: 4,
+                advice: "Conserver au réfrigérateur et éviter de la laver avant le stockage."
+            },
+
+            tomato: {
+                name: "Tomate",
+                min: 12,
+                max: 18,
+                advice: "Conserver dans un endroit frais, à l'abri du soleil."
+            },
+
+            carrot: {
+                name: "Carotte",
+                min: 0,
+                max: 4,
+                advice: "Conserver au réfrigérateur, dans le bac à légumes."
+            },
+
+            lettuce: {
+                name: "Laitue",
+                min: 0,
+                max: 4,
+                advice: "Conserver au réfrigérateur, dans un sac adapté."
+            },
+
+            potato: {
+                name: "Pomme de terre",
+                min: 7,
+                max: 10,
+                advice: "Conserver dans un endroit sombre, sec et bien ventilé."
+            }
+
+        };
+
+        function analyze() {
+
+            const product = products[
+                document.getElementById("product").value
+            ];
+
+            const temperature = Number(
+                document.getElementById("temperature").value
+            );
+
+            const result =
+                document.getElementById("result");
+
+            if (
+                document.getElementById("temperature").value === "" ||
+                !Number.isFinite(temperature)
+            ) {
+
+                result.style.display = "block";
+
+                result.innerHTML =
+                    "⚠️ Veuillez entrer une température valide.";
+
+                return;
+            }
+
+            let status;
+            let message;
+
+            if (temperature < product.min) {
+
+                status = "❄️ Température trop basse";
+
+                message =
+                    "La température est plus froide que la plage recommandée.";
+
+            } else if (temperature > product.max) {
+
+                status = "☀️ Température trop élevée";
+
+                message =
+                    "La température est plus chaude que la plage recommandée.";
+
+            } else {
+
+                status = "✓ Température adaptée";
+
+                message =
+                    "La température se trouve dans la plage recommandée.";
+
+            }
+
+            result.style.display = "block";
+
+            result.innerHTML = `
+
+                <h2>📊 Résultat de l'analyse</h2>
+
+                <p>
+                    <strong>Produit :</strong>
+                    ${product.name}
+                </p>
+
+                <p>
+                    <strong>Température mesurée :</strong>
+                    ${temperature} °C
+                </p>
+
+                <p>
+                    <strong>Plage indicative :</strong>
+                    ${product.min} à ${product.max} °C
+                </p>
+
+                <p class="status">
+                    ${status}
+                </p>
+
+                <p>
+                    ${message}
+                </p>
+
+                <p>
+                    <strong>💡 Conseil :</strong>
+                    ${product.advice}
+                </p>
+
+            `;
+
+        }
+
+    </script>
 
 </body>
+
 </html>
